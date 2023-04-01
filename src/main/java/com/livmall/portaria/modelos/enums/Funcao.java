@@ -1,4 +1,4 @@
-package com.livmall.portaria.modelos;
+package com.livmall.portaria.modelos.enums;
 
 public enum Funcao {
     PORTEIRO,

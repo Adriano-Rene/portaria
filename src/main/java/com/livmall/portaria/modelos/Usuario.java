@@ -1,6 +1,7 @@
 package com.livmall.portaria.modelos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,6 +23,16 @@ public class Usuario  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Registro> registros;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Item> items;
+
+
 
     @Column(nullable = false,length = 150)
     @NotEmpty(message = "{campo.nome.obrigatorio}")
