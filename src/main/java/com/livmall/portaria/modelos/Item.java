@@ -1,5 +1,6 @@
 package com.livmall.portaria.modelos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -34,16 +36,17 @@ public class Item  implements Serializable {
     @Column(name = "Sala", nullable = false)
     private Integer sala;
 
-    @Column(name = "hora_item", updatable = false)
-    private LocalTime hora;
 
-    @Column(name = "data_item", updatable = false)
-    private LocalDate data;
+    @Column(name = "data", updatable = false)
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime data ;
+
+
 
     @PrePersist
     public void prePersist(){
-        setHora(LocalTime.now());
-        setData(LocalDate.now());
+        setData(LocalDateTime.now());
+
     }
 
 

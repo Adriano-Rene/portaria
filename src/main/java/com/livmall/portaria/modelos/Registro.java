@@ -1,5 +1,6 @@
 package com.livmall.portaria.modelos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -24,7 +24,7 @@ public class Registro implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "nome")
     private Usuario usuario;
 
 
@@ -37,7 +37,7 @@ public class Registro implements Serializable {
     private String documento;
 
     @Column(nullable = false)
-    private BigInteger telefone;
+    private Integer telefone;
 
     @Column(nullable = false)
     private Integer sala;
@@ -49,6 +49,7 @@ public class Registro implements Serializable {
     @Column(name = "hora_registro", updatable = false)
     private LocalTime hora;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_registro", updatable = false)
     private LocalDate data;
 
