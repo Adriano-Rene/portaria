@@ -38,14 +38,14 @@ public class Item  implements Serializable {
 
 
     @Column(name = "data", updatable = false)
-    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime data ;
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private LocalDate data ;
 
 
 
     @PrePersist
     public void prePersist(){
-        setData(LocalDateTime.now());
+        setData(LocalDate.now());
 
     }
 
